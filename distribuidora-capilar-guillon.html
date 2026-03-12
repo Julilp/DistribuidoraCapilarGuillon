@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Distribuidora Capilar Guillón | Perfumería & Cuidado Capilar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --magenta-900: #4a0e2e;
+  --magenta-800: #6b1544;
+  --magenta-700: #8b1a5a;
+  --magenta-600: #a8206e;
+  --magenta-500: #c72584;
+  --magenta-400: #d94a9a;
+  --magenta-300: #e87db5;
+  --magenta-200: #f2aed1;
+  --magenta-100: #fbe0ef;
+  --magenta-50: #fef2f8;
+
+  --cream: #fdf8f5;
+  --dark: #1a0a12;
+  --dark-soft: #2d1520;
+  --gold: #d4a574;
+  --gold-light: #e8c9a4;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  --shadow-sm: 0 2px 8px rgba(199, 37, 132, 0.08);
+  --shadow-md: 0 8px 30px rgba(199, 37, 132, 0.12);
+  --shadow-lg: 0 20px 60px rgba(199, 37, 132, 0.15);
+  --shadow-glow: 0 0 40px rgba(199, 37, 132, 0.2);
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-full: 9999px;
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== NOISE OVERLAY ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--magenta-500);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--magenta-600);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(199, 37, 132, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(199, 37, 132, 0.5); }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 16px 0;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+.navbar.scrolled {
+  background: rgba(253, 248, 245, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 2px 20px rgba(199, 37, 132, 0.08);
+  padding: 10px 0;
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--magenta-600), var(--magenta-400));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  box-shadow: 0 4px 15px rgba(199, 37, 132, 0.3);
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.nav-logo-text span {
+  color: var(--magenta-600);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark-soft);
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--magenta-500);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--magenta-600);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--magenta-600), var(--magenta-500));
+  color: white !important;
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  box-shadow: 0 4px 15px rgba(199, 37, 132, 0.3);
+  transition: all 0.3s ease !important;
+}
+
+.nav-cta::after { display: none !important; }
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(199, 37, 132, 0.4) !important;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 2.5px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 80px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -20%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(199, 37, 132, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite reverse;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  animation: slideInLeft 1s ease-out;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--magenta-100);
+  color: var(--magenta-700);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+  letter-spacing: 0.5px;
+}
+
+.hero-badge::before {
+  content: '✦';
+  font-size: 0.7rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+
+.hero-title em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--magenta-600), var(--magenta-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: #6b5060;
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--magenta-600), var(--magenta-500));
+  color: white;
+  padding: 16px 36px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(199, 37, 132, 0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(199, 37, 132, 0.45);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  color: var(--magenta-700);
+  padding: 16px 36px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  border: 2px solid var(--magenta-200);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--magenta-400);
+  background: var(--magenta-50);
+  transform: translateY(-2px);
+}
+
+.hero-visual {
+  position: relative;
+  animation: fadeIn 1.2s ease-out 0.3s both;
+}
+
+.hero-img-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-img-wrapper img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+}
+
+.hero-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(74, 14, 46, 0.3) 100%);
+}
+
+.hero-floating-card {
+  position: absolute;
+  bottom: -20px;
+  left: -30px;
+  background: white;
+  padding: 18px 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.hero-floating-card .icon {
+  width: 48px;
+  height: 48px;
+  background: var(--magenta-100);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.hero-floating-card .info strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--dark);
+}
+
+.hero-floating-card .info span {
+  font-size: 0.8rem;
+  color: #9b7a8a;
+}
+
+.hero-floating-card-2 {
+  position: absolute;
+  top: 30px;
+  right: -20px;
+  background: linear-gradient(135deg, var(--magenta-600), var(--magenta-400));
+  color: white;
+  padding: 14px 22px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-glow);
+  animation: float 5s ease-in-out infinite 1s;
+}
+
+.hero-floating-card-2 strong {
+  display: block;
+  font-size: 1.5rem;
+  font-family: var(--font-display);
+}
+
+.hero-floating-card-2 span {
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+/* ===== MARQUEE ===== */
+.marquee-section {
+  padding: 30px 0;
+  background: var(--magenta-900);
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  animation: marquee 20s linear infinite;
+  width: max-content;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-item {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  letter-spacing: 1px;
+}
+
+.marquee-item .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--magenta-400);
+  border-radius: 50%;
+}
+
+/* ===== CATEGORÍAS ===== */
+.categories {
+  padding: 100px 0;
+}
+
+.categories-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.category-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  cursor: pointer;
+  group: true;
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.category-card:hover img {
+  transform: scale(1.08);
+}
+
+.category-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(74, 14, 46, 0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  transition: background 0.4s;
+}
+
+.category-card:hover .category-card-overlay {
+  background: linear-gradient(180deg, transparent 20%, rgba(74, 14, 46, 0.9) 100%);
+}
+
+.category-card-overlay h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 6px;
+}
+
+.category-card-overlay p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ===== ABOUT ===== */
+.about {
+  padding: 100px 0;
+  background: linear-gradient(180deg, var(--magenta-50), var(--cream));
+}
+
+.about .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-images {
+  position: relative;
+  height: 500px;
+}
+
+.about-img-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 65%;
+  height: 70%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.about-img-1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-img-2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 55%;
+  height: 60%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 5px solid var(--cream);
+}
+
+.about-img-2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.stat {
+  background: white;
+  padding: 24px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat strong {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--magenta-600);
+  display: block;
+}
+
+.stat span {
+  font-size: 0.85rem;
+  color: #9b7a8a;
+}
+
+/* ===== PRODUCTOS DESTACADOS ===== */
+.products {
+  padding: 100px 0;
+}
+
+.products-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.product-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.product-card-img {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.product-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-card-img img {
+  transform: scale(1.05);
+}
+
+.product-card-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--magenta-500);
+  color: white;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.product-card-body {
+  padding: 24px;
+}
+
+.product-card-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.product-card-body p {
+  font-size: 0.88rem;
+  color: #9b7a8a;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.product-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-card-footer .price {
+  font-weight: 700;
+  color: var(--magenta-700);
+  font-size: 1.05rem;
+}
+
+.product-card-footer .cart-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--magenta-200);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--magenta-500);
+  transition: all 0.3s;
+  font-size: 1.1rem;
+}
+
+.product-card-footer .cart-btn:hover {
+  background: var(--magenta-500);
+  border-color: var(--magenta-500);
+  color: white;
+}
+
+/* ===== DESCARGA LISTA ===== */
+.download-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--magenta-800), var(--magenta-600));
+  position: relative;
+  overflow: hidden;
+}
+
+.download-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.download-section .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.download-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: white;
+  margin-bottom: 14px;
+}
+
+.download-content p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.05rem;
+  max-width: 500px;
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  color: var(--magenta-700);
+  padding: 18px 40px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-download:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.btn-download svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ===== CONTACTO / WHATSAPP ===== */
+.contact {
+  padding: 100px 0;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.contact-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.contact-card .icon-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.contact-card.whatsapp .icon-wrap {
+  background: #dcf8e6;
+  color: #25d366;
+}
+
+.contact-card.instagram .icon-wrap {
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  color: #e1306c;
+}
+
+.contact-card.location .icon-wrap {
+  background: var(--magenta-100);
+  color: var(--magenta-600);
+}
+
+.contact-card.hours .icon-wrap {
+  background: #e8f0fe;
+  color: #4285f4;
+}
+
+.contact-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+
+.contact-card p {
+  color: #7a6570;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25d366;
+  color: white;
+  padding: 14px 30px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+}
+
+.btn-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+  padding: 14px 30px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(225, 48, 108, 0.3);
+}
+
+.btn-instagram:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(225, 48, 108, 0.4);
+}
+
+/* ===== MAP ===== */
+.map-section {
+  padding: 0 0 100px;
+}
+
+.map-wrapper {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 4px solid white;
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  display: block;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--dark);
+  padding: 60px 0 30px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 50px;
+}
+
+.footer-brand h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.footer-brand h3 span {
+  color: var(--magenta-400);
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 340px;
+}
+
+.footer-col h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: var(--magenta-300);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-socials a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+
+.footer-socials a:hover {
+  background: var(--magenta-600);
+  border-color: var(--magenta-600);
+  color: white;
+}
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 64px;
+  height: 64px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  animation: pulse-glow 2s infinite;
+  cursor: pointer;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+  fill: white;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .hero .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-desc { margin: 0 auto 36px; }
+  .hero-actions { justify-content: center; }
+
+  .hero-visual {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .hero-floating-card { left: 10px; bottom: -10px; }
+  .hero-floating-card-2 { right: 10px; top: 20px; }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about .container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .about-images {
+    height: 400px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    max-width: 320px;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    padding: 100px 40px 40px;
+    gap: 24px;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero {
+    padding: 100px 0 60px;
+    min-height: auto;
+  }
+
+  .hero-img-wrapper img {
+    height: 360px;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .category-card {
+    aspect-ratio: 2/3;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .download-section .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-floating-card,
+  .hero-floating-card-2 {
+    display: none;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-card {
+    aspect-ratio: 16/9;
+  }
+
+  .about-images {
+    height: 320px;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .map-wrapper iframe {
+    height: 280px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">DC</div>
+      <div class="nav-logo-text">Distribuidora <span>Capilar</span></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#categorias">Categorías</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#contacto" class="nav-cta">Contactanos</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">Distribuidora Mayorista & Minorista</div>
+      <h1 class="hero-title">
+        Belleza &<br><em>Cuidado Capilar</em><br>en Luis Guillón
+      </h1>
+      <p class="hero-desc">
+        Tu distribuidora de confianza en accesorios de perfumería y cuidado capilar.
+        Las mejores marcas, los mejores precios.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5491100000000?text=Hola!%20Quiero%20consultar%20por%20productos" class="btn-primary" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Escribinos por WhatsApp
+        </a>
+        <a href="#productos" class="btn-secondary">
+          Ver Productos ↓
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80" alt="Productos de belleza y cuidado capilar" loading="eager">
+        <div class="hero-img-overlay"></div>
+      </div>
+      <div class="hero-floating-card">
+        <div class="icon">💇‍♀️</div>
+        <div class="info">
+          <strong>+500 Productos</strong>
+          <span>Stock permanente</span>
+        </div>
+      </div>
+      <div class="hero-floating-card-2">
+        <strong>★ 4.9</strong>
+        <span>Valoración clientes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Cuidado Capilar</span>
+    <span class="marquee-item"><span class="dot"></span>Perfumería</span>
+    <span class="marquee-item"><span class="dot"></span>Tinturas</span>
+    <span class="marquee-item"><span class="dot"></span>Accesorios</span>
+    <span class="marquee-item"><span class="dot"></span>Cepillos & Peines</span>
+    <span class="marquee-item"><span class="dot"></span>Tratamientos</span>
+    <span class="marquee-item"><span class="dot"></span>Coloración</span>
+    <span class="marquee-item"><span class="dot"></span>Maquillaje</span>
+    <span class="marquee-item"><span class="dot"></span>Cosmética</span>
+    <span class="marquee-item"><span class="dot"></span>Decoloración</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="marquee-item"><span class="dot"></span>Cuidado Capilar</span>
+    <span class="marquee-item"><span class="dot"></span>Perfumería</span>
+    <span class="marquee-item"><span class="dot"></span>Tinturas</span>
+    <span class="marquee-item"><span class="dot"></span>Accesorios</span>
+    <span class="marquee-item"><span class="dot"></span>Cepillos & Peines</span>
+    <span class="marquee-item"><span class="dot"></span>Tratamientos</span>
+    <span class="marquee-item"><span class="dot"></span>Coloración</span>
+    <span class="marquee-item"><span class="dot"></span>Maquillaje</span>
+    <span class="marquee-item"><span class="dot"></span>Cosmética</span>
+    <span class="marquee-item"><span class="dot"></span>Decoloración</span>
+  </div>
+</div>
+
+<!-- ===== CATEGORÍAS ===== -->
+<section class="categories" id="categorias">
+  <div class="container">
+    <div class="categories-header animate-on-scroll">
+      <span class="section-label">Nuestras Categorías</span>
+      <h2 class="section-title">Todo lo que <em>necesitás</em></h2>
+    </div>
+    <div class="categories-grid">
+      <div class="category-card animate-on-scroll">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80" alt="Maquillaje" loading="lazy">
+        <div class="category-card-overlay">
+          <h3>Maquillaje</h3>
+          <p>Bases, labiales, sombras y más</p>
+        </div>
+      </div>
+      <div class="category-card animate-on-scroll">
+        <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=600&q=80" alt="Cuidado Capilar" loading="lazy">
+        <div class="category-card-overlay">
+          <h3>Cuidado Capilar</h3>
+          <p>Shampoo, cremas y tratamientos</p>
+        </div>
+      </div>
+      <div class="category-card animate-on-scroll">
+        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&q=80" alt="Perfumería" loading="lazy">
+        <div class="category-card-overlay">
+          <h3>Perfumería</h3>
+          <p>Fragancias y colonias</p>
+        </div>
+      </div>
+      <div class="category-card animate-on-scroll">
+        <img src="https://images.unsplash.com/photo-1522338242992-e1a54571a9f7?w=600&q=80" alt="Accesorios" loading="lazy">
+        <div class="category-card-overlay">
+          <h3>Accesorios</h3>
+          <p>Cepillos, peines, brochas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="nosotros">
+  <div class="container">
+    <div class="about-images animate-on-scroll">
+      <div class="about-img-1">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80" alt="Interior del local" loading="lazy">
+      </div>
+      <div class="about-img-2">
+        <img src="https://images.unsplash.com/photo-1585232004423-244e0e6904e3?w=600&q=80" alt="Productos en exhibición" loading="lazy">
+      </div>
+    </div>
+    <div class="about-content animate-on-scroll">
+      <span class="section-label">Sobre Nosotros</span>
+      <h2 class="section-title">Tu distribuidora de <em>confianza</em></h2>
+      <p style="color: #7a6570; font-size: 1rem; line-height: 1.8; margin-bottom: 16px;">
+        Somos una distribuidora ubicada en el corazón de Luis Guillón, especializada en accesorios de perfumería
+        y cuidado capilar. Trabajamos con las mejores marcas del mercado para ofrecerte variedad, calidad
+        y los precios más competitivos de la zona.
+      </p>
+      <p style="color: #7a6570; font-size: 1rem; line-height: 1.8;">
+        Atendemos tanto a peluquerías y salones de belleza como a clientes particulares.
+        Nuestro compromiso es brindar una atención personalizada y asesoramiento profesional.
+      </p>
+      <div class="about-stats">
+        <div class="stat">
+          <strong>500+</strong>
+          <span>Productos</span>
+        </div>
+        <div class="stat">
+          <strong>50+</strong>
+          <span>Marcas</span>
+        </div>
+        <div class="stat">
+          <strong>100%</strong>
+          <span>Originales</span>
+        </div>
+        <div class="stat">
+          <strong>⭐</strong>
+          <span>Mejor precio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTOS DESTACADOS ===== -->
+<section class="products" id="productos">
+  <div class="container">
+    <div class="products-header animate-on-scroll">
+      <span class="section-label">Lo Más Pedido</span>
+      <h2 class="section-title">Productos <em>destacados</em></h2>
+    </div>
+    <div class="products-grid">
+      <div class="product-card animate-on-scroll">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=600&q=80" alt="Tratamiento capilar" loading="lazy">
+          <span class="product-card-tag">Popular</span>
+        </div>
+        <div class="product-card-body">
+          <h3>Tratamiento Keratina</h3>
+          <p>Reparación profunda para cabellos dañados y procesados.</p>
+          <div class="product-card-footer">
+            <span class="price">Consultar</span>
+            <button class="cart-btn" title="Consultar">→</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card animate-on-scroll">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1599751449128-eb7249c3d6b1?w=600&q=80" alt="Kit de tinturas" loading="lazy">
+          <span class="product-card-tag">Nuevo</span>
+        </div>
+        <div class="product-card-body">
+          <h3>Kit Coloración Profesional</h3>
+          <p>Tinturas de alta duración con amplia carta de colores.</p>
+          <div class="product-card-footer">
+            <span class="price">Consultar</span>
+            <button class="cart-btn" title="Consultar">→</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card animate-on-scroll">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80" alt="Set de cepillos" loading="lazy">
+          <span class="product-card-tag">Oferta</span>
+        </div>
+        <div class="product-card-body">
+          <h3>Set Cepillos Profesionales</h3>
+          <p>Cepillos térmicos y de desenredo para todo tipo de cabello.</p>
+          <div class="product-card-footer">
+            <span class="price">Consultar</span>
+            <button class="cart-btn" title="Consultar">→</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card animate-on-scroll">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=600&q=80" alt="Shampoo y acondicionador" loading="lazy">
+          <span class="product-card-tag">Top</span>
+        </div>
+        <div class="product-card-body">
+          <h3>Shampoo & Acondicionador</h3>
+          <p>Líneas profesionales de cuidado diario y reparación.</p>
+          <div class="product-card-footer">
+            <span class="price">Consultar</span>
+            <button class="cart-btn" title="Consultar">→</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card animate-on-scroll">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&q=80" alt="Polvo decolorante" loading="lazy">
+          <span class="product-card-tag">Pro</span>
+        </div>
+        <div class="product-card-body">
+          <h3>Polvo Decolorante</h3>
+          <p>Decoloración de alto rendimiento para profesionales.</p>
+          <div class="product-card-footer">
+            <span class="price">Consultar</span>
+            <button class="cart-btn" title="Consultar">→</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card animate-on-scroll">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600&q=80" alt="Cremas para peinar" loading="lazy">
+          <span class="product-card-tag">Nuevo</span>
+        </div>
+        <div class="product-card-body">
+          <h3>Cremas de Peinar</h3>
+          <p>Definición de rulos, alisado y protección térmica.</p>
+          <div class="product-card-footer">
+            <span class="price">Consultar</span>
+            <button class="cart-btn" title="Consultar">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DESCARGA LISTA DE PRECIOS ===== -->
+<section class="download-section" id="precios">
+  <div class="container">
+    <div class="download-content">
+      <h2>📋 Lista de Precios Actualizada</h2>
+      <p>Descargá nuestra lista de precios completa con todas las marcas y productos disponibles. Actualizada semanalmente.</p>
+    </div>
+    <button class="btn-download" onclick="downloadPriceList()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Descargar Lista de Precios
+    </button>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact-header animate-on-scroll">
+      <span class="section-label">Contacto</span>
+      <h2 class="section-title">¿Cómo <em>encontrarnos</em>?</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card whatsapp animate-on-scroll">
+        <div class="icon-wrap">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Escribinos por WhatsApp para consultas, pedidos y lista de precios. Te respondemos al instante.</p>
+        <a href="https://wa.me/5491100000000?text=Hola!%20Quiero%20consultar%20por%20productos" class="btn-whatsapp" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Abrir WhatsApp
+        </a>
+      </div>
+      <div class="contact-card instagram animate-on-scroll">
+        <div class="icon-wrap">📸</div>
+        <h3>Instagram</h3>
+        <p>Seguinos en Instagram para ver las últimas novedades, ofertas y productos que recibimos.</p>
+        <a href="https://www.instagram.com/distribuidoracapilar.guillon/" class="btn-instagram" target="_blank" rel="noopener">
+          @distribuidoracapilar.guillon
+        </a>
+      </div>
+      <div class="contact-card location animate-on-scroll">
+        <div class="icon-wrap">📍</div>
+        <h3>Ubicación</h3>
+        <p>Tte. Evangelio G. Ford 1613<br>Luis Guillón, Buenos Aires<br>Pdo. de Esteban Echeverría</p>
+      </div>
+      <div class="contact-card hours animate-on-scroll">
+        <div class="icon-wrap">🕐</div>
+        <h3>Horarios</h3>
+        <p>Lunes a Viernes: 9:00 a 18:00<br>Sábados: 9:00 a 13:00<br>Domingos: Cerrado</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAPA ===== -->
+<section class="map-section">
+  <div class="container">
+    <div class="map-wrapper animate-on-scroll">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3275.5!2d-58.4425!3d-34.7925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sTte.+Evangelio+G.+Ford+1613%2C+Luis+Guill%C3%B3n!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar"
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Ubicación Distribuidora Capilar Guillón">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Distribuidora <span>Capilar</span></h3>
+        <p>Tu distribuidora de accesorios de perfumería y cuidado capilar en Luis Guillón. Atención mayorista y minorista con los mejores precios.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#categorias">Categorías</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#precios">Lista de Precios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/5491100000000" target="_blank">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/distribuidoracapilar.guillon/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#contacto">Ubicación</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Distribuidora Capilar Guillón. Todos los derechos reservados.</span>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/distribuidoracapilar.guillon/" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
+        <a href="https://wa.me/5491100000000" target="_blank" aria-label="WhatsApp">💬</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== WHATSAPP FLOTANTE ===== -->
+<a href="https://wa.me/5491100000000?text=Hola!%20Quiero%20consultar%20por%20productos" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ===== NAVBAR SCROLL =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ===== HAMBURGER MENU =====
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
+
+// ===== SCROLL ANIMATIONS =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, index * 100);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// ===== DOWNLOAD PRICE LIST =====
+function downloadPriceList() {
+  // Placeholder: in production, this would link to an actual PDF
+  alert('📋 La lista de precios se descargará próximamente.\n\nMientras tanto, consultanos por WhatsApp para recibir la lista actualizada.');
+}
+
+// ===== SMOOTH SCROLL POLYFILL FOR SAFARI =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
